@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+// TodoItem.jsx
+import { useRef, useState, useEffect } from "react";
 import { useStore } from "./Context/Context";
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, isEditing, setEditingIndex, onStartEditing }) => {
   const {
     dispatch,
     Actions: { DeleteTodo, EditTodo },
@@ -11,6 +12,18 @@ const TodoItem = ({ todo }) => {
   const [editedTitle, setEditedTitle] = useState(todo.title);
   const field = useRef(null);
 
+  useEffect(() => {
+    if (isEditing) {
+      setEditMode(true);
+    } else {
+      setEditMode(false);
+    }
+  }, [isEditing]);
+  const handleDelete = (e) => {
+    setEditMode(false);
+    setEditingIndex(null);
+    dispatch({ type: DeleteTodo, params: { id: todo.id } });
+  };
   const handleEdit = () => {
     if (!editedTitle.trim()) {
       field.current.focus();
@@ -23,6 +36,8 @@ const TodoItem = ({ todo }) => {
         params: { id: todo.id, title: editedTitle },
       });
     }
+
+    onStartEditing();
     setEditMode(!editMode);
   };
 
@@ -42,13 +57,7 @@ const TodoItem = ({ todo }) => {
       )}
       <div className="settings">
         <button onClick={handleEdit}>{editMode ? "save" : "edit"}</button>
-        <button
-          onClick={() =>
-            dispatch({ type: DeleteTodo, params: { id: todo.id } })
-          }
-        >
-          delete
-        </button>
+        <button onClick={handleDelete}>delete</button>
       </div>
     </div>
   );

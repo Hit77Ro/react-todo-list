@@ -1,13 +1,28 @@
 // Todos.jsx
+import { useState } from "react";
 import { useStore } from "./Context/Context";
 import TodoItem from "./TodoItem";
+
 const Todos = () => {
-  const {todos}= useStore();
+  const [editingIndex, setEditingIndex] = useState(null);
+  const { todos } = useStore();
+
+  const handleStartEditing = (index) => {
+    setEditingIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <div className="todos">
-      {todos.length > 0
-        ? todos.map((todo) => <TodoItem viewMode={false} key={todo.id} todo={todo} />)
-        : ""}
+      {todos.length > 0 &&
+        todos.map((todo, index) => (
+          <TodoItem
+            key={todo.id}
+            setEditingIndex={setEditingIndex}
+            todo={todo}
+            isEditing={editingIndex === index}
+            onStartEditing={() => handleStartEditing(index)}
+          />
+        ))}
     </div>
   );
 };
