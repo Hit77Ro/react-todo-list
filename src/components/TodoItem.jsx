@@ -20,8 +20,8 @@ const TodoItem = ({ todo, isEditing, setEditingIndex, onStartEditing }) => {
     }
   }, [isEditing]);
   const handleDelete = (e) => {
-    setEditMode(false);
     setEditingIndex(null);
+    setEditMode(false);
     dispatch({ type: DeleteTodo, params: { id: todo.id } });
   };
   const handleEdit = () => {
