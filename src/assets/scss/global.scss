@@ -1,0 +1,96 @@
+@use "./vars" as *;
+@use "./reset" as *;
+
+:root {
+  --mainClr: orangered;
+}
+body {
+  background-color: #eee;
+}
+.container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 77%;
+  margin: 100px auto;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 4px rgba(orangered, 0.3);
+  > h1 {
+    color: var(--mainClr);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+   > form {
+    margin-bottom: 30px;
+    input {
+      font-size: 17px;
+      &:focus {
+        border-color: var(--mainClr);
+        box-shadow: 0px 0px 0px 4px rgba(orangered, 0.5);
+      }
+      flex-grow: 1;
+      padding: 10px;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    .btn {
+      padding: 15px 50px;
+    }
+  }
+  .todos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: inherit;
+    background-color: #fff1efb9;
+    border-radius: inherit;
+  }
+  .todo {
+    margin-bottom: 20px;
+    background-color: hsl(0, 0%, 100%);
+    padding: inherit;
+    border-radius: inherit;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: space-between;
+    input {
+      display: block;
+      flex-grow: 1;
+      &:focus {
+        box-shadow: 0px 0px 0px 4px rgba(orangered, 0.5);
+      }
+      height: 30px;
+      width: 30px;
+      accent-color: var(--mainClr);
+    }
+    .settings {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+  }
+}
+
+button,
+.btn {
+  display: block;
+  padding: 5px 10px;
+  border: none;
+  background-color: var(--mainClr);
+  color: white;
+  &:focus {
+    border: none;
+
+    box-shadow: 0px 0px 0px 4px rgba(rgb(182, 182, 181), 0.5);
+  }
+}
+.btn {
+  border-radius: 10px;
+}
+a {
+  display: block;
+}

@@ -1,0 +1,58 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+*:focus {
+  outline: none;
+}
+li,
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a,
+a:focus {
+  text-decoration: none;
+}
+button,
+select,
+input,
+textarea {
+  transition: 0.3s;
+  border-radius: 7px;
+  padding: 10px;
+  border: 1px solid #d4d4d4;
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(rgb(20, 96, 238), 0.3);
+    border-color: rgba(rgb(20, 96, 238), 0.3);
+  }
+}
+button,
+select {
+  cursor: pointer;
+}
+button,
+input,
+span,
+a,
+select,
+textarea {
+  display: block;
+}
+img,
+video {
+  display: block;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
